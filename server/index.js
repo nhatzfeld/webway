@@ -4,6 +4,9 @@ const { json } = require("body-parser");
 
 const app = express();
 
+app.use(cors());
+app.use(json());
+
 port = 3001;
 
 app.listen(port, () => {
