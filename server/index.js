@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 
+const { getUser, logout } = require(`${__dirname}/controllers/userController`);
 const app = express();
 
 app.use(
