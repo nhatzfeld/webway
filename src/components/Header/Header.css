@@ -1,7 +1,7 @@
-.Header {
+/* .Header {
   width: 100vw;
-  height: 10vh;
-  background-color: #4b2e34;
+  height: 5vh;
+  background-color: #829fc3;
 }
 
 .Header__nav {
@@ -27,8 +27,8 @@
 
 .Header__link:hover {
   background-color: #ce6c41;
-}
-
+} */
+/* 
 .Header__link.Header__link--home {
 }
 
@@ -39,4 +39,4 @@
 }
 
 .Header__link.Header__link--vault {
-}
+} */

@@ -76,14 +76,15 @@ passport.deserializeUser((user, done) => {
 });
 
 // "ALEX, WHAT ARE ENDPOINTS?"
+// app.get("/login", passport.authenticate("auth0"), function(req, res, next) {
+//   you = req.user
+//   req.session.user = req.user
 
-app.get(
-  "/auth",
-  passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
-    failureRedirect: "/auth"
-  })
-);
+app.get("/auth", passport.authenticate("auth0"), function(req, res, next) {
+  req.session.user = req.user;
+  successRedirect: "http://localhost:3000/#/";
+  failureRedirect: "/auth";
+});
 
 app.get("/logout", logout);
 app.get("/api/me", getUser);
