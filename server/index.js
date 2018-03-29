@@ -5,7 +5,6 @@ const { json } = require("body-parser");
 const massive = require("massive");
 const session = require("express-session");
 const passport = require("passport");
-const Auth0Strategy = require("passport-auth0");
 const path = require("path");
 // CONTROLLER FILES
 const { getUser, logout } = require(`${__dirname}/controllers/userController`);
@@ -37,36 +36,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(
-  new Auth0Strategy(
-    {
-      domain: process.env.DOMAIN,
-      clientSecret: process.env.CLIENT_SECRET,
-      clientID: process.env.CLIENT_ID,
-      callbackURL: "/auth",
-      sessionSecret: process.env.SESSION_SECRET
-    },
-    function(accessToken, refreshToken, extraParams, profile, done) {
-      console.log(profile);
-      app
-        //db files get passed in here
-        .get("db")
-        .getUserByAuthId(profile.id)
-        .then(response => {
-          if (!response[0]) {
-            // if we dont get anything back make something
-            app
-              .get("db")
-              .addUserByAuthId([profile.id, profile.displayName])
-              .then(res => done(null, res[0]));
-          } else {
-            return done(null, response[0]);
-          }
-        });
-    }
-  )
-);
-
 // EDIT USER
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -82,16 +51,8 @@ passport.deserializeUser((user, done) => {
 //   you = req.user
 //   req.session.user = req.user
 
-app.get("/auth", passport.authenticate("auth0"), function(req, res, next) {
-  req.session.user = req.user;
-  successRedirect: "http://localhost:3000/#/";
-  failureRedirect: "/auth";
-  console.log(successRedirect);
-  console.log(failureRedirect);
-});
-
-app.get("/logout", logout);
-app.get("/api/me", getUser);
+// app.get("/logout", logout);
+// app.get("/api/me", getUser);
 
 app.listen(port, () => {
   console.log(`Port: ${port} Active!`);
