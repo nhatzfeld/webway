@@ -20,11 +20,11 @@ app.use(cors());
 app.use(json());
 app.set("bcrypt", bcrypt);
 // CONNECTING OUR DB
-const massiveConnection = massive(process.env.connectionString) // tell massive to make the connection
+const massiveConnection = massive(process.env.CONNECTION_STRING) // tell massive to make the connection
   .then(db => app.set("db", db)) // if connection exists, set 'db' to db
   .catch(console.log);
 
-app.put("/api/hereComesThePwTest", controller.passWordChecker);
+app.put("/api/hereComesThePwTest", controller.passwordChecker);
 app.put("/api/hereComesTheNewUser", controller.accountCreation);
 
 app.listen(port, () => console.log(`You are now listening to ${port}FM.`));

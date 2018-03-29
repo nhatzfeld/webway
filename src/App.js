@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import routes from "./routes";
-import Header from "./components/Header/Header.js";
-import Sidebar from "./components/Sidebar/Sidebar.js";
+// import routes from "./routes";
+// import Header from "./components/Header/Header.js";
+// import Sidebar from "./components/Sidebar/Sidebar.js";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 import "./App.css";
 
 // THINK OF APP JS AS ALWAYS ROUTING THROUGH IT, IT IS STATIC INFORMATION
@@ -12,7 +13,8 @@ class App extends Component {
     super();
     this.state = {
       passwordText: "",
-      usernameText: ""
+      usernameText: "",
+      redirect: null
     };
   }
 
@@ -40,6 +42,27 @@ class App extends Component {
       })
       .then(response => console.log(response));
   }
+
+  loginUser(username, password) {
+    axios
+      .put("/api/loginuser", {
+        username: username,
+        password: password
+      })
+      .then(response => {
+        console.log(response);
+        if (response.data.userid) {
+          this.props.loadUserInfo(response);
+          this.setState({ redirect: <Redirect to="/home" /> });
+        } else if (response.data === "BADPW") {
+          alert(
+            "That password appears to be incorrect. If you're unable to figure it out, reach out to chriswf for help."
+          );
+        } else if (response.data === "UnknownUser") {
+          alert("This Username doesn't appear to be in our system.");
+        }
+      });
+  }
   render() {
     return (
       <div className="App">
@@ -66,16 +89,5 @@ class App extends Component {
     );
   }
 }
-
-//   render() {
-//     return (
-//       <div className="Front">
-//         <Header />
-//         <Sidebar />
-//         {routes}
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
