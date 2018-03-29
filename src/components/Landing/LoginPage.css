@@ -1,10 +1,10 @@
-.landing {
+.loginpage {
   height: 100vh;
   width: 100%;
   object-fit: cover;
 }
 
-.landing__background {
+.loginpage__background {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@
   background-size: cover;
 }
 
-.login__form {
+.loginpage__form {
   display: block;
   margin: 0 auto;
 }

@@ -2,20 +2,80 @@ import React, { Component } from "react";
 import routes from "./routes";
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
+import axios from "axios";
 import "./App.css";
 
 // THINK OF APP JS AS ALWAYS ROUTING THROUGH IT, IT IS STATIC INFORMATION
 // WHAT EVER WE PUT ON APP JS GOES EVERYWHERE
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      passwordText: "",
+      usernameText: ""
+    };
+  }
+
+  usernameHandler(val) {
+    this.setState({ usernameText: val });
+  }
+
+  passwordHandler(val) {
+    this.setState({ passwordText: val });
+  }
+
+  sendIt(username, password) {
+    axios
+      .put("/api/hereComesThePwTest", {
+        username,
+        password
+      })
+      .then(response => console.log(response));
+  }
+  createIt(username, password) {
+    axios
+      .put("/api/hereComesTheNewUser", {
+        username,
+        password
+      })
+      .then(response => console.log(response));
+  }
   render() {
     return (
-      <div className="Front">
-        <Header />
-        <Sidebar />
-        {routes}
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <input onChange={e => this.usernameHandler(e.target.value)} />
+        <input onChange={e => this.passwordHandler(e.target.value)} />
+        <button
+          onClick={() =>
+            this.sendIt(this.state.usernameText, this.state.passwordText)
+          }
+        >
+          Sign In
+        </button>
+        <button
+          onClick={() =>
+            this.createIt(this.state.usernameText, this.state.passwordText)
+          }
+        >
+          Register{" "}
+        </button>
       </div>
     );
   }
 }
+
+//   render() {
+//     return (
+//       <div className="Front">
+//         <Header />
+//         <Sidebar />
+//         {routes}
+//       </div>
+//     );
+//   }
+// }
 
 export default App;
