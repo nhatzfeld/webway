@@ -49,10 +49,12 @@ passport.use(
     function(accessToken, refreshToken, extraParams, profile, done) {
       console.log(profile);
       app
+        //db files get passed in here
         .get("db")
         .getUserByAuthId(profile.id)
         .then(response => {
           if (!response[0]) {
+            // if we dont get anything back make something
             app
               .get("db")
               .addUserByAuthId([profile.id, profile.displayName])
@@ -84,6 +86,8 @@ app.get("/auth", passport.authenticate("auth0"), function(req, res, next) {
   req.session.user = req.user;
   successRedirect: "http://localhost:3000/#/";
   failureRedirect: "/auth";
+  console.log(successRedirect);
+  console.log(failureRedirect);
 });
 
 app.get("/logout", logout);
