@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import routes from "./routes";
-// import Header from "./components/Header/Header.js";
-// import Sidebar from "./components/Sidebar/Sidebar.js";
+import routes from "./routes";
+import Header from "./components/Header/Header.js";
+import Sidebar from "./components/Sidebar/Sidebar.js";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./App.css";
@@ -15,6 +15,8 @@ class App extends Component {
       passwordText: "",
       usernameText: "",
       redirect: null
+      // userPlaceholder: "Username",
+      // passPlaceholder: "Password"
     };
   }
 
@@ -53,7 +55,7 @@ class App extends Component {
         console.log(response);
         if (response.data.userid) {
           this.props.loadUserInfo(response);
-          this.setState({ redirect: <Redirect to="/home" /> });
+          this.setState({ Redirect: <Redirect to="/home" /> });
         } else if (response.data === "BADPW") {
           alert(
             "That password appears to be incorrect. If you're unable to figure it out, reach out to chriswf for help."
@@ -71,6 +73,8 @@ class App extends Component {
         </header>
         <input onChange={e => this.usernameHandler(e.target.value)} />
         <input onChange={e => this.passwordHandler(e.target.value)} />
+        {/* <placeholder userPlaceholder={this.state.userPlaceholder} />
+        <placeholder passText={this.state.passPlaceholder} /> */}
         <button
           onClick={() =>
             this.sendIt(this.state.usernameText, this.state.passwordText)
@@ -85,6 +89,7 @@ class App extends Component {
         >
           Register{" "}
         </button>
+        {Routes}
       </div>
     );
   }

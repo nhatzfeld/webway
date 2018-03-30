@@ -8,8 +8,3 @@ const store = createStore(
 );
 
 export default store;
-
-// const createStoreWithMiddleware = applyMiddleware(...middleWare)(createStore);
-// export function makeStore() {
-//   return createStoreWithMiddleware(userReducer);
-// }

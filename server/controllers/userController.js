@@ -8,7 +8,16 @@ const accountCreation = (req, res) => {
     bcrypt.hash(password, salt, function(err, hash) {
       dbInstance
         .createUserAccount(username, hash)
-        .then(response => res.status(200).json(response));
+        .then(response => {
+          res.status(200).json(response);
+          req.session.user = response[0];
+        })
+        .catch(err => {
+          console.log(err);
+          if (err.code === "23505") {
+            res.status(200).json("No Duplicate Users");
+          }
+        });
     });
   });
 };
@@ -23,10 +32,10 @@ const passwordChecker = (req, res) => {
     .then(response => {
       console.log(response);
       if (response.length > 0) {
-        var hash = response[0].password;
+        var hash = response[0].user_password;
         bcrypt.compare(password, hash).then(function(answer) {
           if (answer == true) {
-            // req.session.user = response[0]
+            req.session.user = response[0];
             res.status(200).send(response[0]);
           } else if (answer == false) {
             res.status(200).send("BADPW");
