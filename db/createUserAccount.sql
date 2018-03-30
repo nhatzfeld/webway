@@ -1,5 +1,5 @@
-INSERT INTO password_test_users
-    (username, password)
+INSERT INTO user_info
+    (user_name, user_password)
 VALUES
     ($1, $2)
-returning *
+RETURN *
