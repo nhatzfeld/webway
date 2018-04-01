@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom";
 import "./App.css";
 
 // THINK OF APP JS AS ALWAYS ROUTING THROUGH IT, IT IS STATIC INFORMATION
-// WHAT EVER WE PUT ON APP JS GOES EVERYWHERE
+// WHAT EVER WE PUT ON APP JS GOES ON EVERYTHING WE HAVE
 class App extends Component {
   constructor() {
     super();
@@ -15,8 +15,6 @@ class App extends Component {
       passwordText: "",
       usernameText: "",
       redirect: null
-      // userPlaceholder: "Username",
-      // passPlaceholder: "Password"
     };
   }
 
@@ -73,8 +71,6 @@ class App extends Component {
         </header>
         <input onChange={e => this.usernameHandler(e.target.value)} />
         <input onChange={e => this.passwordHandler(e.target.value)} />
-        {/* <placeholder userPlaceholder={this.state.userPlaceholder} />
-        <placeholder passText={this.state.passPlaceholder} /> */}
         <button
           onClick={() =>
             this.sendIt(this.state.usernameText, this.state.passwordText)
@@ -87,7 +83,7 @@ class App extends Component {
             this.createIt(this.state.usernameText, this.state.passwordText)
           }
         >
-          Register{" "}
+          Register
         </button>
         {Routes}
       </div>

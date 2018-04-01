@@ -3,14 +3,26 @@ import { connect } from "react-redux";
 import "./Login";
 
 const Login = props => {
+  constructor() {
+    super()
+
+    this.state =
+    {
+      redirect = '',
+      usernameText: '',
+      passwordText:'',
+      t
+    }
+  }
+
+
+  // RENDER IS DESCRIBING OUR COMPONENT UI
   render() {
   return (
     <div className="Login">
 
 <input onChange={e => this.usernameHandler(e.target.value)} />
         <input onChange={e => this.passwordHandler(e.target.value)} />
-        {/* <placeholder userPlaceholder={this.state.userPlaceholder} />
-        <placeholder passText={this.state.passPlaceholder} /> */}
         <button
           onClick={() =>
             this.sendIt(this.state.usernameText, this.state.passwordText)
@@ -27,6 +39,8 @@ const Login = props => {
         </button>
 
 // <redirect to='/home'
+</div>
+
 
 // rende this.state.redirect
 //component mapstate to props 
