@@ -1,15 +1,11 @@
 import React from "react";
+import Login from "../Login/Login.js";
 import "./Header.css";
 
 const Header = () => {
   return (
     <div className="Header">
-      <div className="Header__nav">
-        {/* <Link className="Header__link Header__link--landing" to="/" />
-        <Link className="Header__link Header__link--login" to="/login"> */}
-
-        {/* </Link> */}
-      </div>
+      <div className="Header__nav" />
     </div>
   );
 };

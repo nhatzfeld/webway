@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import routes from "./routes";
+import { connect } from "react-redux";
 import Header from "./components/Header/Header.js";
 import Sidebar from "./components/Sidebar/Sidebar.js";
 import axios from "axios";
@@ -67,7 +68,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome!</h1>
         </header>
         <input onChange={e => this.usernameHandler(e.target.value)} />
         <input onChange={e => this.passwordHandler(e.target.value)} />
@@ -85,7 +86,6 @@ class App extends Component {
         >
           Register
         </button>
-        {Routes}
       </div>
     );
   }

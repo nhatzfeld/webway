@@ -6,22 +6,17 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state =
-    {
-      redirect = '',
-      usernameText: '',
-      passwordText:'',
-      
-    }
+    this.state = {
+      usernameText: "",
+      passwordText: ""
+    };
   }
-  
-
 
   // RENDER IS DESCRIBING OUR COMPONENT UI
   render() {
-  return (
-    <div className="Login">
-      <input onChange={e => this.usernameHandler(e.target.value)} />
+    return (
+      <div className="Login">
+        <input onChange={e => this.usernameHandler(e.target.value)} />
         <input onChange={e => this.passwordHandler(e.target.value)} />
         <button
           onClick={() =>
@@ -37,18 +32,21 @@ class Login extends Component {
         >
           Register{" "}
         </button>
-
-        </div>
-  )}}
+      </div>
+    );
+  }
+}
 // <redirect to='/home'
 
-
-// rende this.state.redirect
+// this.state.redirect
 //after creating user set your user to sessions in the controller
 
-mapStateToProps(state){
-  usernameText,
-  passwordText,
-  redirect
-}
-export default connect(mapStateToProps, { usernameText, passwordText, redirect })(Login)
+const mapStateToProps = state => {
+  return {
+    usernameText,
+    passwordText
+  };
+  // redirect
+};
+
+export default connect(mapStateToProps, { usernameText, passwordText })(Login);

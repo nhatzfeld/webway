@@ -1,4 +1,4 @@
-/* .Header {
+.Header {
   width: 100vw;
   height: 5vh;
   background-color: #829fc3;
@@ -27,16 +27,4 @@
 
 .Header__link:hover {
   background-color: #ce6c41;
-} */
-/* 
-.Header__link.Header__link--home {
 }
-
-.Header__link.Header__link--login {
-}
-
-.Header__link.Header__link--about {
-}
-
-.Header__link.Header__link--vault {
-} */
