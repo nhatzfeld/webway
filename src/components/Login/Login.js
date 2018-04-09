@@ -1,27 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import "./Login";
+import "./Login.css";
 
-const Login = props => {
-  constructor() {
-    super()
+class Login extends Component {
+  constructor(props) {
+    super(props);
 
     this.state =
     {
       redirect = '',
       usernameText: '',
       passwordText:'',
-      t
+      
     }
   }
+  
 
 
   // RENDER IS DESCRIBING OUR COMPONENT UI
   render() {
   return (
     <div className="Login">
-
-<input onChange={e => this.usernameHandler(e.target.value)} />
+      <input onChange={e => this.usernameHandler(e.target.value)} />
         <input onChange={e => this.passwordHandler(e.target.value)} />
         <button
           onClick={() =>
@@ -38,12 +38,17 @@ const Login = props => {
           Register{" "}
         </button>
 
+        </div>
+  )}}
 // <redirect to='/home'
-</div>
 
 
 // rende this.state.redirect
-//component mapstate to props 
 //after creating user set your user to sessions in the controller
-//put all your login information here not on app because 
-export default connect()
+
+mapStateToProps(state){
+  usernameText,
+  passwordText,
+  redirect
+}
+export default connect(mapStateToProps, { usernameText, passwordText, redirect })(Login)
